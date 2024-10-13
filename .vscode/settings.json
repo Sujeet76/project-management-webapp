@@ -12,7 +12,9 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
     "commitlint",
+    "hono",
     "hookform",
-    "nextjs"
+    "nextjs",
+    "tanstack"
   ]
 }

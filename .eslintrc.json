@@ -1,5 +1,11 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "prettier",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:tailwindcss/recommended"
+  ],
   "plugins": ["check-file", "n"],
   "rules": {
     "prefer-arrow-callback": "error",

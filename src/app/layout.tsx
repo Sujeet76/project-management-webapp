@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 import { cn } from "@/lib/utils";
+import QueryProvider from "@/providers/query-client.provider";
 
 import "./globals.css";
 
@@ -23,7 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, "min-h-dvh antialiased")}>
-        {children}
+        <QueryProvider>
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryProvider>
       </body>
     </html>
   );

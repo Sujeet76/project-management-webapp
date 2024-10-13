@@ -28,17 +28,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-const formSchema = z.object({
-  name: z.string().trim().min(1, { message: "Name is required" }),
-  email: z.string().trim().email(),
-  password: z.string().min(1, { message: "Password is required" }),
-});
+import { registerSchema } from "../schemas";
 
-type FormSchemaType = z.infer<typeof formSchema>;
+type FormSchemaType = z.infer<typeof registerSchema>;
 
 const SignUpCard = () => {
   const form = useForm<FormSchemaType>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(registerSchema),
     mode: "onChange",
     defaultValues: {
       email: "",

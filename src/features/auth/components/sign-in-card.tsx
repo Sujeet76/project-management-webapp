@@ -19,16 +19,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const formSchema = z.object({
-  email: z.string().trim().email(),
-  password: z.string().min(1, { message: "Password is required" }),
-});
+import { useLogin } from "../api/use-login";
+import { loginSchema } from "../schemas";
 
-type FormSchemaType = z.infer<typeof formSchema>;
+type FormSchemaType = z.infer<typeof loginSchema>;
 
 const SignInCard = () => {
+  const { mutate } = useLogin();
   const form = useForm<FormSchemaType>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(loginSchema),
     mode: "onChange",
     defaultValues: {
       email: "",
@@ -37,11 +36,13 @@ const SignInCard = () => {
   });
 
   const handleSubmit = (data: FormSchemaType) => {
-    console.log(data);
+    mutate({
+      json: data,
+    });
   };
 
   return (
-    <Card className="h-full w-full flex-1 md:max-w-2xl">
+    <Card className="size-full flex-1 md:max-w-2xl">
       <CardHeader className="items-center justify-center">
         <CardTitle className="text-2xl">Welcome back!</CardTitle>
       </CardHeader>
